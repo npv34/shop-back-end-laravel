@@ -9,7 +9,10 @@
             </h6>
         </div>
         @if(\Illuminate\Support\Facades\Session::has('success'))
-            <div class="alert alert-success" >{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
+            <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
+        @endif
+        @if(\Illuminate\Support\Facades\Session::has('error'))
+            <div class="alert alert-danger">{{ \Illuminate\Support\Facades\Session::get('error') }}</div>
         @endif
         <div class="card-body">
             <div class="table-responsive">
@@ -22,6 +25,7 @@
                         <th>Phone</th>
                         <th>Image</th>
                         <th>Role</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -32,11 +36,11 @@
                         <th>Phone</th>
                         <th>Image</th>
                         <th>Role</th>
+                        <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-
-                    @foreach($users as $user)
+                    @forelse($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
@@ -52,9 +56,21 @@
                                     {{ 'member' }}
                                 @endif
                             </td>
+                            <td>
+                            @if($user->id == '1' || $user->id == \Illuminate\Support\Facades\Auth::user()->id)
+                                <td></td>
+                            @else
+                                <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"
+                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i class="fas fa-trash-alt"></i></a>
+                            @endif
+                                </td>
                         </tr>
-                    @endforeach
 
+                    @empty
+                        <tr>
+                            <td>{{ 'Không có dữ liệu' }}</td>
+                        </tr>
+                    @endforelse
                     </tbody>
                 </table>
             </div>
