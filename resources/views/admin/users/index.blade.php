@@ -47,7 +47,7 @@
                             <td>{{ $user->address }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>
-                                <img src="{{ asset('storage/ ' . $user->img ) }}" alt="">
+                                <img src="{{ asset('storage/' . $user->image ) }}" alt="" width="50">
                             </td>
                             <td>
                                 @if($user->role == \App\Http\Controllers\RoleConstant::ADMIN)
@@ -62,6 +62,7 @@
                             @else
                                 <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger"
                                    onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('users.update', $user->id) }}" class="btn btn-primary"><i class="far fa-edit"></i></a>
                             @endif
                                 </td>
                         </tr>
