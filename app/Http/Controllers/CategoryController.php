@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -33,8 +34,14 @@ class CategoryController extends Controller
             $path = $image->store('category', 'public');
             $category->image = $path;
         }
-
         $category->save();
+        Session::flash('success', 'Thêm mới thành công!');
+        return redirect()->route('categories.index');
+    }
 
+    public function index()
+    {
+        $categories = Category::all();
+        return view("admin.categories.index", compact('categories'));
     }
 }
