@@ -39,13 +39,9 @@ Route::prefix('admin')->group(function () {
     Route::prefix('/categories')->group(function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');
         Route::post('/create', 'CategoryController@store')->name('categories.store');
-//        Route::get('/{id}/delete', 'UserController@destroy')->name('users.destroy');
-//        Route::get('/{id}/update', 'UserController@update')->name('users.update');
-//        Route::post('/{id}/update', 'UserController@edit')->name('users.edit');
+        Route::get('/', 'CategoryController@index')->name('categories.index');
     });
-
-
-    });
+});
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');

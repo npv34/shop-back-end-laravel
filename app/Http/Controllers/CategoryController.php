@@ -33,8 +33,12 @@ class CategoryController extends Controller
             $path = $image->store('category', 'public');
             $category->image = $path;
         }
-
         $category->save();
+    }
 
+    public function index()
+    {
+        $categories = Category::all();
+        return view("admin.categories.index", compact('categories'));
     }
 }
