@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -14,7 +14,7 @@ class CategoryController extends Controller
         return view('admin.categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         $category = new Category();
         $category->name = $request->name;
@@ -29,8 +29,8 @@ class CategoryController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $category = $request->image;
-            $path = $category->store('category', 'public');
+            $image = $request->image;
+            $path = $image->store('category', 'public');
             $category->image = $path;
         }
 

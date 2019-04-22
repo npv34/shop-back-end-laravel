@@ -38,8 +38,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('/categories')->group(function () {
         Route::get('/create', 'CategoryController@create')->name('categories.create');
-//        Route::get('/create', 'UserController@create')->name('users.create');
-//        Route::post('/create', 'UserController@store')->name('users.store');
+        Route::post('/create', 'CategoryController@store')->name('categories.store');
 //        Route::get('/{id}/delete', 'UserController@destroy')->name('users.destroy');
 //        Route::get('/{id}/update', 'UserController@update')->name('users.update');
 //        Route::post('/{id}/update', 'UserController@edit')->name('users.edit');

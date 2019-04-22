@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('page-content')
     <div class="col-12 col-md-12">
-        <form method="post" action="" enctype="multipart/form-data">
+        <form method="post" action="{{ route('categories.store') }}" enctype="multipart/form-data">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
